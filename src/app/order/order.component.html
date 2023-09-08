@@ -1,0 +1,88 @@
+<div class="max-w-2xl mx-auto mt-8 p-4">
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <!-- <div class="flex items-center mb-4">
+            <label for="no_pesanan" class="text-gray-700 text-sm font-bold mr-4 flex-none w-32">No.Pesanan</label>
+            <input type="text" id="no_pesanan" name="no_pesanan" class="flex-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300" [(ngModel)]="no_pesanan">
+        </div> -->
+
+        <form [formGroup]="myForm" (ngSubmit)="postData()">
+            <div class="form-group">
+                <div class="flex items-center mb-4">
+                    <label for="no_pesanan" class="text-gray-700 text-sm font-bold mr-4 flex-none w-32">No. Pesanan</label>
+                    <input type="text" id="no_pesanan" name="no_pesanan" formControlName="no_pesanan"
+                    class="px-4 py-2 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 flex-grow">
+                
+                </div>
+    
+                <div *ngIf="myForm?.get('no_pesanan')?.hasError('required') && myForm?.get('no_pesanan')?.touched"
+                    class="text-red-600 text-sm mt-1 ml-36 mb-2">
+                    No. Pesanan is required.
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <div class="flex items-center mb-4">
+                    <label for="no_pesanan" class="text-gray-700 text-sm font-bold mr-4 flex-none w-32">Tanggal</label>
+                    <input type="datetime-local" id="tanggal" name="tanggal" formControlName="tanggal"
+                    class="px-4 py-2 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 flex-grow">
+                
+                </div>
+    
+                <div *ngIf="myForm?.get('tanggal')?.hasError('required') && myForm?.get('tanggal')?.touched"
+                    class="text-red-600 text-sm mt-1 ml-36 mb-2">
+                    Tanggal is required.
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <div class="flex items-center mb-4">
+                    <label for="no_pesanan" class="text-gray-700 text-sm font-bold mr-4 flex-none w-32">Nama Supplier</label>
+                    <input type="text" id="nama_supplier" name="nama_supplier" formControlName="nama_supplier"
+                    class="px-4 py-2 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 flex-grow">
+                
+                </div>
+    
+                <div *ngIf="myForm?.get('nama_supplier')?.hasError('required') && myForm?.get('nama_supplier')?.touched"
+                    class="text-red-600 text-sm mt-1 ml-36 mb-2">
+                    Nama Supplier is required.
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <div class="flex items-center mb-4">
+                    <label for="no_pesanan" class="text-gray-700 text-sm font-bold mr-4 flex-none w-32">Nama Produk</label>
+                    <input type="text" id="nama_product" name="nama_product" formControlName="nama_product"
+                    class="px-4 py-2 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 flex-grow">
+                
+                </div>
+    
+                <div *ngIf="myForm?.get('nama_product')?.hasError('required') && myForm?.get('nama_product')?.touched"
+                    class="text-red-600 text-sm mt-1 ml-36 mb-2">
+                    Nama Produk is required.
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <div class="flex items-center mb-4">
+                    <label for="no_pesanan" class="text-gray-700 text-sm font-bold mr-4 flex-none w-32">Total</label>
+                    <input type="number" id="total" name="total" formControlName="total"
+                    class="px-4 py-2 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 flex-grow">
+                
+                </div>
+    
+                <div *ngIf="myForm?.get('total')?.hasError('required') && myForm?.get('total')?.touched"
+                    class="text-red-600 text-sm mt-1 ml-36 mb-2">
+                    Total is required.
+                    </div>
+            </div>
+            
+            <button type="submit" class="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-200 ml-36" [disabled]="!isFormValid">
+                Submit
+            </button>
+        </form>
+          
+    </div>
+</div>
+
+  
+  

@@ -1,0 +1,88 @@
+<div class="container mx-auto py-8">
+    <h1 class="text-3xl font-semibold mb-4 underline">Product List</h1>
+    <div class="flex justify-end mb-2">
+        <button class="w-2/12 bg-blue-600 p-2 text-white rounded-lg">Show Products</button>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="min-w-full table-auto">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2">Image</th>
+                    <th class="px-4 py-2">Title</th>
+                    <th class="px-4 py-2">Category</th>
+                    <th class="px-4 py-2">Brand</th>
+                    <th class="px-4 py-2">Stock</th>
+                    <th class="px-4 py-2">Price</th>
+                    <th class="px-4 py-2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products">
+                    <td class="border px-4 py-2">
+                        <img [src]="product.thumbnail" alt="{{ product.title }}" />
+                    </td>
+                    <td class="border px-4 py-2">
+                        {{ product.title }}
+                    </td>
+                    <td class="border px-4 py-2">
+                        {{ product.category }}
+                    </td>
+                    <td class="border px-4 py-2">
+                        {{ product.brand }}
+                    </td>
+                    <td class="border px-4 py-2">
+                        {{ product.stock }}
+                    </td>
+                    <td class="border px-4 py-2">
+                        {{ product.price }}
+                    </td>
+                    <td class="border px-4 py-2">
+                        <button class="bg-blue-600 p-2 text-white rounded-lg" (click)="viewProduct(product.id)">View</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="fixed inset-0 flex items-center justify-center z-50" [class.hidden]="!isModalOpen">
+            <div class="modal-overlay absolute inset-0 bg-gray-500 opacity-75"></div>
+        
+            <div class="modal-container bg-white w-11/12 rounded shadow-lg z-50 overflow-y-auto">
+                <!-- Modal content -->
+                <div class="modal-content py-4 text-left px-6">
+                    <!-- Modal header -->
+                    <div class="modal-header flex justify-between">
+                        <h3 class="text-2xl font-semibold underline">{{ selectedProduct.title }}</h3>
+                        <button class="modal-close p-2 -mt-2 -mr-2 text-3xl hover:text-gray-400" (click)="closeModal()">&times;</button>
+                    </div>
+        
+                    <!-- Modal body -->
+                    <div class="modal-body flex">
+                        <div class="pic-product w-1/2">
+                            <img class="mb-2 w-full" [src]="selectedProduct.thumbnail" alt="{{ selectedProduct.title }}" />
+                            <div class="flex">
+                                <div *ngFor="let img of selectedProduct.images" class="w-1/4">
+                                    <img class="w-full" [src]="img" />
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="desc-product w-1/2 ml-4">
+                            <div class="flex items-center justify-between">
+                                <p>Price: ${{ selectedProduct.price }}</p>
+                                <img class="w-44 ml-32" [src]="'assets/rating.jpeg'">
+                            </div>
+                            <div class="flex items-center justify-between mr-24 mb-4">
+                                <p>Category: {{ selectedProduct.category }}</p>
+                                <p class="ml-12">Brand: {{ selectedProduct.brand }}</p>
+                            </div>
+                            <p class="mb-4">Stock: {{ selectedProduct.stock }}</p>
+                            <p class="mb-2">Description: </p>
+                            <p>{{ selectedProduct.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
